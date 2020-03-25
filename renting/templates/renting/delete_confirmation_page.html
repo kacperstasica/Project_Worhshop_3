@@ -1,0 +1,12 @@
+{% extends 'renting/base.html' %}
+
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete the {{ sala.name }} room?</p>
+    <input class="btn btn-primary" type="submit" value="Confirm" name="delete-room"/>
+    <button onclick="window.history.back();" class="btn btn-default" type="button">Cancel</button>
+</form>
+
+{% endblock content %}

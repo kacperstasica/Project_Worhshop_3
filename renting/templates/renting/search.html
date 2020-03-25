@@ -1,0 +1,61 @@
+{% extends 'renting/base.html' %}
+
+{% block content %}
+<h3>
+  <small class="text-muted">Search</small>
+</h3>
+
+<form action="" method="GET">
+    <label>
+      Nazwa:
+      <input type="text"
+             name="name">
+    </label>
+    <label>
+      Pojemność od:
+      <input type="number"
+             name="capacity_from">
+    </label>
+    <label>
+      Pojemność do:
+      <input type="number"
+             name="capacity_to">
+    </label>
+    <label>
+      Rzutnik:
+      <input type="checkbox"
+             name="has_projector">
+    </label>
+    <label>
+        {% csrf_token %}
+        <button type="submit" value="Dodaj">Znajdź salę</button>
+    </label>
+</form>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Capacity</th>
+      <th scope="col">Projector</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for sala in salas %}
+    <tr>
+      <th scope="row">{{ sala.id }}</th>
+      <td><a href="{% url 'detail' sala.id %}">{{ sala.name }}</a></td>
+      <td>{{ sala.capacity }} </td>
+      {% if sala.has_projector %}
+      <td>Yes</td>
+      {% else %}
+      <td>No</td>
+      {% endif %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}

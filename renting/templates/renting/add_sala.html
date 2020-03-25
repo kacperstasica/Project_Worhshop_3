@@ -1,0 +1,34 @@
+{% extends 'renting/base.html' %}
+
+{% block content %}
+<h3>
+  <small class="text-muted">Add Room</small>
+</h3>
+
+<form action="" method="POST">
+    <label>
+      Nazwa:
+      <input type="text"
+             name="name">
+    </label>
+    <label>
+      Pojemność:
+      <input type="number"
+             name="capacity">
+    </label>
+    <label>
+      Rzutnik:
+      <input type="checkbox"
+             name="has_projector">
+    </label>
+    <label>
+        {% csrf_token %}
+        <button type="submit" value="Dodaj">Dodaj</button>
+    </label>
+</form>
+{% if success %}
+<div class="alert alert-success" role="alert">
+  {{success}}
+</div>
+{% endif %}
+{% endblock content %}

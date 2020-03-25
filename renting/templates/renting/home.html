@@ -1,0 +1,43 @@
+{% extends 'renting/base.html' %}
+
+{% block content %}
+
+<h3>
+  <small class="text-muted">List of Rooms</small>
+</h3>
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Capacity</th>
+      <th scope="col">Projector</th>
+      <th scope="col">Availability Today</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for sala in salas %}
+    <tr>
+      <th scope="row">{{ sala.id }}</th>
+      <td> <a href="{% url 'detail' sala.id %}">{{ sala.name }}</a></td>
+      <td>{{ sala.capacity }} </td>
+      {% if sala.has_projector %}
+      <td>Yes</td>
+      {% else %}
+      <td>No</td>
+      {% endif %}
+      {% if sala.id in reservations %}
+      <td>Booked</td>
+      {% else %}
+      <td>Available</td>
+      {% endif %}
+      <td><a href="{% url 'modify' sala.id %}"><button type="button" class="btn btn-secondary">Edit This Room</button></a>
+          <a href="{% url 'delete' sala.id %}"><button type="button" class="btn btn-danger">Delete This Room</button></a></td>
+    </tr>
+
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}

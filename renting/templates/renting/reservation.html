@@ -1,0 +1,29 @@
+{% extends "renting/base.html" %}
+{% block content %}
+
+<h3>
+  <small class="text-muted">Sala {{sala.name}} - reservation page</small>
+</h3>
+
+{% if success %}
+<div class="alert alert-success" role="alert">
+  {{success}}
+</div>
+{% endif %}
+{% if error %}
+<div class="alert alert-danger" role="alert">
+  {{error}}
+</div>
+{% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Date:
+                <br><input type="date" name="date">
+            </label><br>
+            <label for="exampleFormControlTextarea1">Leave a comment:</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" cols="10" rows="5" name="comment"></textarea>
+                <button class="btn btn-outline-info" type="submit">Make Reservation</button>
+        </div>
+    </form>
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% extends 'renting/base.html' %}
+
+{% block content %}
+
+{% if confirmation %}
+<div class="alert alert-success" role="alert">
+  {{msg}}
+</div>
+{% endif %}
+
+{% endblock content %}

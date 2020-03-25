@@ -1,0 +1,39 @@
+{% extends 'renting/base.html' %}
+
+{% block content %}
+<h3>
+  <small class="text-muted">Modify a Room</small>
+</h3>
+
+<form action="" method="POST">
+    <label>
+      Nazwa:
+      <input type="text"
+             name="name" value="{{sala.name}}">
+    </label>
+    <label>
+      Pojemność:
+      <input type="number"
+             name="capacity" value="{{sala.capacity}}">
+    </label>
+    <label>
+      Rzutnik:
+      {% if sala.has_projector %}
+      <input type="checkbox"
+             name="has_projector" checked>
+       {% else %}
+        <input type="checkbox"
+             name="has_projector">
+       {% endif %}
+    </label>
+    <label>
+        {% csrf_token %}
+        <button type="submit" value="Dodaj">Modyfikuj</button>
+    </label>
+</form>
+{% if success %}
+<div class="alert alert-success" role="alert">
+  {{success}}
+</div>
+{% endif %}
+{% endblock content %}
