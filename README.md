@@ -1,2 +1,4 @@
 # Project_Worhshop_3
-App to make room reservations in office building in Django
+Workshop project from CodersLab
+App for booking conference rooms in an office building. 
+Ability to add/delete/modify rooms data as well as search view. 
