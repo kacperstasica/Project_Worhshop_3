@@ -27,7 +27,7 @@
       {% else %}
       <td>No</td>
       {% endif %}
-      {% if sala.id in reservations %}
+      {% if sala.is_reserved_today %}
       <td>Booked</td>
       {% else %}
       <td>Available</td>

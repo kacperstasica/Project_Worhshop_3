@@ -79,14 +79,8 @@ class MainView(View):
 
     def get(self, request):
         salas = Sala.objects.all().order_by('id')
-        today = date.today()
-        reservations = Rezerwacja.objects.filter(date=today)
-        box = []
-        for reservation in reservations:
-            box.append(reservation.sala_id)
         ctx = {
             'salas': salas,
-            'reservations': box,
             'title': 'Home Page'
         }
         return render(request, 'renting/home.html', ctx)
@@ -141,16 +135,13 @@ class ReservationView(View):
         date_today = date.today()
         date_to_check = datetime.strptime(reservation_date, "%Y-%m-%d").date()
         if date_to_check is not None:
-            try:
-                rezerwacja = Rezerwacja.objects.filter(sala_id=sid).filter(date=date_to_check)
-                if rezerwacja:
-                    ctx = {
-                        'error': 'Rezerwacja nieudana. Sprawdź inny termin lub wpisz poprawną datę.',
-                        'title': 'Error'
-                    }
-                    return render(request, 'renting/reservation.html', ctx)
-            except Exception:
-                rezerwacja = None
+            rezerwacja = Rezerwacja.objects.filter(sala_id=sid).filter(date=date_to_check)
+            if rezerwacja:
+                ctx = {
+                    'error': 'Rezerwacja nieudana. Sprawdź inny termin lub wpisz poprawną datę.',
+                    'title': 'Error'
+                }
+                return render(request, 'renting/reservation.html', ctx)
             if date_today > date_to_check:
                 ctx = {
                     'error': 'Rezerwacja nieudana. Sprawdź inny termin lub wpisz poprawną datę.',
