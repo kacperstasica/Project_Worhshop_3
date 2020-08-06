@@ -3,6 +3,8 @@ from django.views import View
 from renting.models import Sala, Rezerwacja
 from datetime import date, datetime
 
+from .forms import SearchForm
+
 
 class AddSalaView(View):
 
@@ -89,6 +91,7 @@ class MainView(View):
 class SearchView(View):
 
     def get(self, request):
+        form = SearchForm(request.GET)
         name = request.GET.get('name')
         capacity_from = request.GET.get('capacity_from')
         capacity_to = request.GET.get('capacity_to')
@@ -104,7 +107,8 @@ class SearchView(View):
             salas = salas.filter(has_projector=True)
         ctx = {
             'salas': salas,
-            'title': 'Search Page'
+            'form': form,
+            'title': 'Search Page',
         }
         return render(request, 'renting/search.html', ctx)
 

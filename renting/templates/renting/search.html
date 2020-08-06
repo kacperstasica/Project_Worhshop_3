@@ -8,26 +8,21 @@
 <form action="" method="GET">
     <label>
       Nazwa:
-      <input type="text"
-             name="name">
+      {{ form.name }}
     </label>
     <label>
       Pojemność od:
-      <input type="number"
-             name="capacity_from">
+      {{ form.capacity_from }}
     </label>
     <label>
       Pojemność do:
-      <input type="number"
-             name="capacity_to">
+      {{ form.capacity_to }}
     </label>
     <label>
       Rzutnik:
-      <input type="checkbox"
-             name="has_projector">
+      {{ form.has_projector }}
     </label>
     <label>
-        {% csrf_token %}
         <button type="submit" value="Dodaj">Znajdź salę</button>
     </label>
 </form>
